@@ -4,6 +4,36 @@
   padding: 0;
 }
 
+* {
+  cursor: none !important;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  z-index: 10000;
+}
+
+.cursor-ring {
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid rgba(232, 168, 69, 0.5);
+  z-index: 9999;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 70px;

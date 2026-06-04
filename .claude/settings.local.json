@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(ls /c/Users/isaac/AppData/Local/ms-playwright/ 2>/dev/null)",
+      "Read(//c/Users/isaac/AppData/Local/ms-playwright//**)"
     ]
   }
 }

@@ -10,11 +10,9 @@ const roles = [
 export function Hero({
   name,
   tagline,
-  github,
 }: {
   name: string;
   tagline: string;
-  github: string;
 }) {
   const [roleIdx, setRoleIdx] = useState(0);
   const [displayed, setDisplayed] = useState('');
@@ -53,14 +51,6 @@ export function Hero({
         <div className="hero-actions">
           <a href="#projects" className="btn-primary">
             View Projects
-          </a>
-          <a
-            href={github}
-            className="btn-ghost"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub <span className="arrow">↗</span>
           </a>
         </div>
       </div>

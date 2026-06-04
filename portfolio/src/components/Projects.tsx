@@ -32,7 +32,11 @@ function ExternalIcon() {
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
-    <div className="project-card" style={{ animationDelay: `${index * 0.1}s` }}>
+    <Link
+      to={`/projects/${project.slug}`}
+      className="project-card"
+      style={{ animationDelay: `${index * 0.1}s` }}
+    >
       {project.image && (
         <div className="project-image">
           <img src={project.image} alt={project.title} loading="lazy" />
@@ -48,13 +52,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </span>
         ))}
       </div>
-      <div className="project-links">
-        <Link
-          to={`/projects/${project.slug}`}
-          className="view-detail-link"
-        >
-          View details →
-        </Link>
+      {(project.github && project.github !== '#') || (project.demo && project.demo !== '#') ? (
         <div className="project-icons">
           {project.github && project.github !== '#' && (
             <a
@@ -81,8 +79,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </a>
           )}
         </div>
-      </div>
-    </div>
+      ) : null}
+    </Link>
   );
 }
 

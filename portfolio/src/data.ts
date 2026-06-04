@@ -1,12 +1,28 @@
+export interface PdfEntry {
+  src: string;
+  label: string;
+  description?: string;
+}
+
 export interface Project {
   title: string;
   slug: string;
   description: string;
   tech: string[];
   image?: string;
-  pdf?: string;
+  gallery?: string[];
+  pdfs?: PdfEntry[];
   github?: string;
   demo?: string;
+}
+
+export interface Experience {
+  role: string;
+  company: string;
+  location: string;
+  period: string;
+  bullets: string[];
+  tags?: string[];
 }
 
 export interface PortfolioData {
@@ -20,6 +36,7 @@ export interface PortfolioData {
   github: string;
   linkedin: string;
   stats: { label: string; value: string }[];
+  experiences: Experience[];
   projects: Project[];
   skills: Record<string, string[]>;
 }
@@ -28,8 +45,8 @@ const data: PortfolioData = {
   name: "Isaac Tang",
   role: "Architectural Engineer",
   tagline: "Where structure meets software.",
-  bio: "I'm an Architectural Engineering student passionate about applying computational tools and software to structural design, building systems, and construction management.",
-  bio2: "My work sits at the intersection of the built environment and modern technology — from BIM automation to structural analysis tools. I believe the future of AEC belongs to those who can speak both languages.",
+  bio: "I'm an Architectural Engineering student at the University of Waterloo with a curiosity that doesn't stay in one lane. Whether it's dissecting a structural system, picking up a new programming language, or diving into something I've never touched before — I'm always looking for the next thing to explore and understand.",
+  bio2: "My work sits at the intersection of the built environment and modern technology — from BIM automation to structural analysis tools. I believe the future of AEC belongs to those who can speak both languages, and I'm here for it.",
   email: "isaac.ijtang@gmail.com",
   phone: "647-289-2621",
   github: "https://github.com/isaacijtang-glitch",
@@ -39,6 +56,20 @@ const data: PortfolioData = {
     { label: "Technologies", value: "15+" },
     { label: "Years Coding", value: "3+" },
   ],
+  experiences: [
+    {
+      role: "Your Role Here",
+      company: "Company Name",
+      location: "City, Province",
+      period: "Jan 2025 — Apr 2025",
+      bullets: [
+        "Describe what you did and the impact it had.",
+        "Add another bullet point here.",
+        "Quantify results where possible (e.g. reduced X by 20%).",
+      ],
+      tags: ["Tool", "Skill", "Software"],
+    },
+  ],
   projects: [
     {
       title: "The Duo Den",
@@ -47,7 +78,28 @@ const data: PortfolioData = {
         "A compact two-person tiny retreat designed to balance productivity and connection to nature. Features a skillion roof with zinc snap-lock standing seam, horizontal fibre cement cladding, rotating walnut louvers, and a flexible dual-layout interior on a continuous spread footing. Designed for the Tiny Retreat Project at the University of Waterloo (1A).",
       tech: ["AutoCAD", "Physical Modelling", "Site Analysis", "Material Research"],
       image: "/images/duo-den.jpg",
-      pdf: "/pdfs/duo-den.pdf",
+      gallery: [
+        "/images/duo-den.jpg",
+        "/images/duo-den-2.jpg",
+        "/images/duo-den-3.jpg",
+      ],
+      pdfs: [
+        {
+          src: "/pdfs/duo-den.pdf",
+          label: "Drawing Set & Documentation",
+          description: "Full architectural drawing set including plans, sections, elevations, and construction details for the Duo Den tiny retreat.",
+        },
+        {
+          src: "/pdfs/duo-den-narrative.pdf",
+          label: "Design Narrative",
+          description: "Design narrative covering precedent studies, research report conclusions, material decisions, and the conceptual framework behind the Duo Den.",
+        },
+        {
+          src: "/pdfs/windows-research.pdf",
+          label: "Fenestration Research",
+          description: "Research report investigating window systems, glazing performance, and daylighting strategies for compact residential structures.",
+        },
+      ],
     },
     {
       title: "Structural Load Visualizer",

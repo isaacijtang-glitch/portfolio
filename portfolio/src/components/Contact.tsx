@@ -91,9 +91,6 @@ export function Contact({
           </a>
         </div>
       </div>
-      <footer className="footer">
-        <p>Designed &amp; Built by Isaac Tang</p>
-      </footer>
     </section>
   );
 }
