@@ -56,8 +56,8 @@ export function Contact({
         <div className="section-label">/ Contact</div>
         <h2 className="section-heading">Let's connect.</h2>
         <p className="contact-desc">
-          I'm open to internships, research collaborations, and interesting
-          projects at the intersection of AEC and software.
+          Always open to new opportunities, conversations, and things worth
+          talking about. Feel free to reach out.
         </p>
         <a href={`mailto:${email}`} className="btn-primary contact-cta">
           Say Hello →

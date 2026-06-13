@@ -2,6 +2,7 @@ export interface PdfEntry {
   src: string;
   label: string;
   description?: string;
+  narrow?: boolean;
 }
 
 export interface Project {
@@ -10,7 +11,9 @@ export interface Project {
   description: string;
   tech: string[];
   image?: string;
+  sketch?: string;
   gallery?: string[];
+  video?: string;
   pdfs?: PdfEntry[];
   github?: string;
   demo?: string;
@@ -19,6 +22,10 @@ export interface Project {
 export interface Experience {
   role: string;
   company: string;
+  website?: string;
+  logo?: string;
+  logoWhite?: boolean;
+  logoSize?: number;
   location: string;
   period: string;
   bullets: string[];
@@ -35,7 +42,6 @@ export interface PortfolioData {
   phone: string;
   github: string;
   linkedin: string;
-  stats: { label: string; value: string }[];
   experiences: Experience[];
   projects: Project[];
   skills: Record<string, string[]>;
@@ -44,30 +50,45 @@ export interface PortfolioData {
 const data: PortfolioData = {
   name: "Isaac Tang",
   role: "Architectural Engineer",
-  tagline: "Where structure meets software.",
-  bio: "I'm an Architectural Engineering student at the University of Waterloo with a curiosity that doesn't stay in one lane. Whether it's dissecting a structural system, picking up a new programming language, or diving into something I've never touched before — I'm always looking for the next thing to explore and understand.",
-  bio2: "My work sits at the intersection of the built environment and modern technology — from BIM automation to structural analysis tools. I believe the future of AEC belongs to those who can speak both languages, and I'm here for it.",
+  tagline: "Design. Build. Learn.",
+  bio: "I like making things. Studio models, technical drawings, something I've never tried before. I'm curious about a lot and still figuring out where that curiosity leads.",
+  bio2: "My toolkit covers design and modelling software, creative tools, and some programming basics. No fixed destination yet. Just following what interests me and building skills along the way.",
   email: "isaac.ijtang@gmail.com",
   phone: "647-289-2621",
   github: "https://github.com/isaacijtang-glitch",
   linkedin: "https://www.linkedin.com/in/isaac-tang-4111b2346/",
-  stats: [
-    { label: "Projects Built", value: "12+" },
-    { label: "Technologies", value: "15+" },
-    { label: "Years Coding", value: "3+" },
-  ],
   experiences: [
     {
-      role: "Your Role Here",
-      company: "Company Name",
-      location: "City, Province",
-      period: "Jan 2025 — Apr 2025",
+      role: "Junior Mechanical Designer",
+      company: "Metro Dock",
+      website: "https://metrodock.com",
+      logo: "/images/metro-dock-logo.png",
+      logoWhite: true,
+      location: "Toronto, ON",
+      period: "Jan 2026 — Apr 2026",
       bullets: [
-        "Describe what you did and the impact it had.",
-        "Add another bullet point here.",
-        "Quantify results where possible (e.g. reduced X by 20%).",
+        "Produced technical drawings in AutoCAD for industrial loading dock equipment including dock levelers, truck restraints, and structural assemblies.",
+        "Took and verified field and shop measurements to ensure design accuracy and alignment with real-world fabrication conditions.",
+        "Supported 3D modelling and part design in SolidWorks, updating drawings based on engineering feedback and manufacturing requirements.",
+        "Observed welding and assembly operations to build an understanding of design for manufacturability and production constraints.",
       ],
-      tags: ["Tool", "Skill", "Software"],
+      tags: ["AutoCAD", "SolidWorks", "Technical Drawing", "Hand Measuring"],
+    },
+    {
+      role: "Digital Media Producer",
+      company: "Teens Conference, Ambassador's For Christ",
+      website: "https://www.afccanada.org/",
+      logo: "/images/ambassadors-for-christ-logo.png",
+      logoSize: 44,
+      location: "North York, ON",
+      period: "Oct 2024 — Mar 2025",
+      bullets: [
+        "Shot photos and videos across a 500+ student event using Canon and Sony cameras with gimbals, covering sessions, candid moments, and key highlights.",
+        "Conducted professional interviews with students, coaches, and staff, handling scripting, lighting setup, and camera angles.",
+        "Edited and produced recap videos using DaVinci Resolve and Adobe Lightroom, shared on social media to boost engagement.",
+        "Created additional engagement content including quick mic interviews and fun day-of videos to keep the audience active on social media.",
+      ],
+      tags: ["Canon", "Sony", "DaVinci Resolve", "Adobe Lightroom", "Photography", "Videography"],
     },
   ],
   projects: [
@@ -76,7 +97,7 @@ const data: PortfolioData = {
       slug: "duo-den",
       description:
         "A compact two-person tiny retreat designed to balance productivity and connection to nature. Features a skillion roof with zinc snap-lock standing seam, horizontal fibre cement cladding, rotating walnut louvers, and a flexible dual-layout interior on a continuous spread footing. Designed for the Tiny Retreat Project at the University of Waterloo (1A).",
-      tech: ["AutoCAD", "Physical Modelling", "Site Analysis", "Material Research"],
+      tech: ["AutoCAD", "SketchUp", "Physical Modelling", "Site Analysis", "Material Research", "Fenestration Research", "Comparative Analysis"],
       image: "/images/duo-den.jpg",
       gallery: [
         "/images/duo-den.jpg",
@@ -98,50 +119,77 @@ const data: PortfolioData = {
           src: "/pdfs/windows-research.pdf",
           label: "Fenestration Research",
           description: "Research report investigating window systems, glazing performance, and daylighting strategies for compact residential structures.",
+          narrow: true,
         },
       ],
     },
     {
-      title: "Structural Load Visualizer",
-      slug: "structural-load-visualizer",
+      title: "Tower Design-Build",
+      slug: "structural-design-build",
       description:
-        "A web-based tool for visualizing structural load distributions from finite element models. Supports IFC import and exports annotated PDF reports.",
-      tech: ["Python", "React", "D3.js", "Flask"],
-      github: "#",
-      demo: "#",
+        "Designed and built a balsa wood structure to support a 225g steel ball between 750mm and 850mm above the base, using only balsa sticks, thread, and glue. The design focused on efficient load paths, member stability, and material efficiency. Ranked against peers on structural efficiency. Currently extending the project at 1:50 scale, detailing structural connections through hand sketches and Rhino 3D modelling. Completed as part of AE 125 at the University of Waterloo.",
+      tech: ["Structural Analysis", "Physical Modelling", "Load Path Design", "Technical Writing", "Rhino", "Connection Design"],
+      pdfs: [
+        {
+          src: "/pdfs/connection-drawings.pdf",
+          label: "Connection Drawings",
+          description: "Hand sketched orthographic drawings detailing three structural connections at 1:5 scale, developed after reconceiving the tower at 1:50 scale. Includes the tower foundation connection and two other critical joints.",
+        },
+        {
+          src: "/pdfs/structural-design-build.pdf",
+          label: "Structural Analysis & Tower Documentation",
+          description: "Covers the structural concept of the tower, load path sketch, model photos, and a breakdown of how individual members work in compression, tension, and bending to support the applied load.",
+        },
+      ],
     },
     {
-      title: "BIM Data Extractor",
-      slug: "bim-data-extractor",
+      title: "Swivel Plate Cart Caster",
+      slug: "caster-plate",
       description:
-        "Automates extraction and QA reporting of building information from Revit models using the Revit API and pandas — cutting manual review time significantly.",
-      tech: ["Python", "Revit API", "pandas", "openpyxl"],
-      github: "#",
+        "Technical analysis and hand drafting of a swivel plate cart caster, following engineering drawing standards. Involved reverse engineering the object, studying its components, and producing a complete multi-view drawing set. First project at the University of Waterloo.",
+      tech: ["Technical Drawing", "Object Analysis", "Engineering Standards"],
+      pdfs: [
+        {
+          src: "/pdfs/caster-plate.pdf",
+          label: "Drawing Set",
+          description: "Hand-drafted multi-view technical drawing of the swivel plate cart caster produced to engineering drawing standards.",
+          narrow: true,
+        },
+      ],
     },
     {
-      title: "Energy Model Dashboard",
-      slug: "energy-model-dashboard",
+      title: "Rube Goldberg Machine",
+      slug: "rube-goldberg",
       description:
-        "Interactive 3D visualization of building energy consumption and thermal performance from EnergyPlus simulations, with zone-level breakdowns and export.",
-      tech: ["Three.js", "TypeScript", "EnergyPlus", "Vite"],
-      github: "#",
-      demo: "#",
+        "Designed and built a multi-step Rube Goldberg machine, engineering each stage from concept to assembly. Handled component design, step sequencing, and structural assembly while working through the physics behind each reaction including momentum transfer, collisions, pulley mechanics, and energy conversion. Every step was calculated and intentional.",
+      tech: ["Physical Prototyping", "Engineering Design", "Physics", "Mechanical Design"],
+      sketch: "/images/rgm-sketch.jpg",
+      gallery: [
+        "/images/rgm-1.jpg",
+        "/images/rgm-2.jpg",
+        "/images/rgm-3.jpg",
+        "/images/rgm-4.jpg",
+        "/images/rgm-5.jpg",
+        "/images/rgm-6.jpg",
+        "/images/rgm-7.png",
+      ],
+      video: "/videos/rube-goldberg.mov",
     },
     {
-      title: "CPM Scheduler",
-      slug: "cpm-scheduler",
+      title: "Rift Coach",
+      slug: "rift-coach",
       description:
-        "Critical Path Method scheduling tool using graph algorithms to optimize resource allocation and flag schedule risks on construction projects.",
-      tech: ["Python", "React", "NetworkX", "FastAPI"],
-      github: "#",
-      demo: "#",
+        "An AI-powered League of Legends coaching tool built for beginners. Gives real-time audio cues for map events like enemy vision and objective timers, recommends runes and items based on the current game scenario rather than static tier lists, and guides players through champion combos and win conditions. The scenario-based build system is what sets it apart, helping players actually understand why they build what they build, not just copy a spreadsheet. Coming soon.",
+      tech: ["Python", "Claude API", "League Client API", "Text-to-Speech"],
     },
   ],
   skills: {
-    Languages: ["Python", "TypeScript", "JavaScript", "MATLAB", "C++"],
-    "Web & Frameworks": ["React", "Node.js", "Three.js", "Flask", "FastAPI", "D3.js"],
-    "AE Software": ["Revit", "AutoCAD", "SAP2000", "ETABS", "EnergyPlus", "Rhino"],
-    Tools: ["Git", "Docker", "Linux", "Jupyter", "Figma", "Excel/VBA"],
+    "Design & Modelling": ["AutoCAD", "Revit", "Rhino", "SolidWorks", "SketchUp"],
+    "Creative Tools": ["Figma", "Adobe Photoshop", "Lightroom", "Illustrator"],
+    "Productivity": ["Excel", "Google Workspace"],
+    "Programming": ["JavaScript", "MATLAB", "Node.js"],
+    "Fabrication": ["Creality Cloud (3D Printing)"],
+    "Languages": ["English", "French"],
   },
 };
 

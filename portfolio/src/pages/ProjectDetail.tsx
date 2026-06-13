@@ -58,21 +58,30 @@ export function ProjectDetail({ projects }: { projects: Project[] }) {
               )}
             </div>
           )}
-          {project.gallery && project.gallery.length > 0 && (
-            <div className="detail-gallery">
-              {project.gallery.map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt={`${project.title} ${i + 1}`}
-                  className="gallery-img"
-                  loading="lazy"
-                  onClick={() => setLightbox(src)}
-                />
-              ))}
+          {project.sketch && (
+            <div className="detail-sketch">
+              <div className="pdf-label" style={{ marginTop: '2.5rem' }}>/ Design Sketch</div>
+              <img src={project.sketch} alt="Design sketch" className="detail-sketch-img" onClick={() => setLightbox(project.sketch!)} />
             </div>
           )}
-          {!project.gallery && project.image && (
+          {project.gallery && project.gallery.length > 0 && (
+            <>
+              <div className="pdf-label" style={{ marginTop: '2.5rem' }}>{project.sketch ? '/ Build Process' : '/ Photos'}</div>
+              <div className={project.gallery.length <= 3 ? 'detail-gallery' : 'detail-gallery-grid'}>
+                {project.gallery.map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt={`${project.title} ${i + 1}`}
+                    className="gallery-img"
+                    loading="lazy"
+                    onClick={() => setLightbox(src)}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+          {!project.sketch && !project.gallery && project.image && (
             <img src={project.image} alt={project.title} className="detail-image" />
           )}
         </div>
@@ -86,11 +95,21 @@ export function ProjectDetail({ projects }: { projects: Project[] }) {
               <p className="pdf-desc">{entry.description}</p>
             )}
           </div>
-          <div className="pdf-viewer">
+          <div className={`pdf-viewer${entry.narrow ? ' pdf-narrow' : ''}`}>
             <PdfViewer src={entry.src} />
           </div>
         </div>
       ))}
+
+      {project.video && (
+        <div className="container">
+          <div className="pdf-label" style={{ marginTop: '2.5rem' }}>/ In Action</div>
+          <video className="detail-video" controls playsInline>
+            <source src={project.video} type="video/quicktime" />
+            <source src={project.video} type="video/mp4" />
+          </video>
+        </div>
+      )}
 
       <footer className="footer">
         <p>Designed &amp; built by Isaac Tang · {new Date().getFullYear()}</p>

@@ -3,11 +3,9 @@ import { useIntersection } from '../hooks/useIntersection';
 export function About({
   bio,
   bio2,
-  stats,
 }: {
   bio: string;
   bio2: string;
-  stats: { label: string; value: string }[];
 }) {
   const { ref, isVisible } = useIntersection();
 
@@ -30,20 +28,12 @@ export function About({
           </div>
           <div className="about-text">
             <h2 className="section-heading">
-              Bridging architecture
+              Making things,
               <br />
-              and technology.
+              figuring things out.
             </h2>
             <p className="about-bio">{bio}</p>
             <p className="about-bio">{bio2}</p>
-            <div className="stats-row">
-              {stats.map(s => (
-                <div key={s.label} className="stat-card">
-                  <span className="stat-value">{s.value}</span>
-                  <span className="stat-label">{s.label}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>

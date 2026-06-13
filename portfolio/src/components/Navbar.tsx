@@ -34,7 +34,7 @@ export function Navbar() {
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className="navbar-inner">
-        <a href="/" onClick={(e) => { e.preventDefault(); navigate('/'); }} className="navbar-logo">
+        <a href="/" onClick={(e) => { e.preventDefault(); location.pathname === '/' ? window.scrollTo({ top: 0, behavior: 'smooth' }) : navigate('/'); }} className="navbar-logo">
           <span className="logo-bracket">[</span>
           IT
           <span className="logo-bracket">]</span>

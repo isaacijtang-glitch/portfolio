@@ -27,7 +27,7 @@ function HomePage() {
   return (
     <>
       <Hero name={data.name} tagline={data.tagline} />
-      <About bio={data.bio} bio2={data.bio2} stats={data.stats} />
+      <About bio={data.bio} bio2={data.bio2} />
       <Experience experiences={data.experiences} />
       <Projects projects={data.projects} />
       <Skills skills={data.skills} />

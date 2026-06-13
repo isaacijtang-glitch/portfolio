@@ -481,49 +481,54 @@
 .experience-timeline {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 1.5rem;
 }
 
-.experience-entry {
-  display: grid;
-  grid-template-columns: 1.5rem 1fr;
-  gap: 0 2rem;
+.experience-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
   position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
-.experience-entry:not(:last-child) .experience-marker::after {
+.experience-card::before {
   content: '';
   position: absolute;
-  top: 0.6rem;
-  left: 0.6875rem;
-  width: 1px;
-  height: calc(100% + 2.5rem);
-  background: var(--border);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.25s;
 }
 
-.experience-marker {
-  position: relative;
+.experience-card:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+}
+
+.experience-card:hover::before {
+  opacity: 1;
+}
+
+.experience-card-header {
   display: flex;
-  justify-content: center;
-  padding-top: 0.35rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
 }
 
-.experience-dot {
-  width: 0.625rem;
-  height: 0.625rem;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1;
-}
-
-.experience-body {
-  padding-bottom: 3rem;
-}
-
-.experience-entry:last-child .experience-body {
-  padding-bottom: 0;
+a.experience-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .experience-meta {
@@ -564,6 +569,20 @@
   font-weight: 500;
 }
 
+
+.experience-logo {
+  height: 28px;
+  width: auto;
+  max-width: 100px;
+  object-fit: contain;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+
+a.experience-card:hover .experience-logo {
+  opacity: 0.8;
+}
+
 .experience-bullets {
   list-style: none;
   padding: 0;
@@ -582,12 +601,12 @@
 }
 
 .experience-bullets li::before {
-  content: '—';
+  content: '·';
   position: absolute;
   left: 0;
   color: var(--accent);
-  font-size: 0.75rem;
-  line-height: 1.9;
+  font-size: 1.1rem;
+  line-height: 1.5;
 }
 
 .experience-tags {
@@ -636,6 +655,17 @@
   object-fit: cover;
   object-position: center;
   transition: transform 0.4s ease;
+}
+
+.project-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(12, 12, 16, 0.7), transparent);
+  pointer-events: none;
 }
 
 .project-card:hover .project-image img {
@@ -911,6 +941,18 @@
   border: 1px solid var(--border);
 }
 
+/* ===== VIDEO ===== */
+.detail-video {
+  width: 100%;
+  max-width: 560px;
+  max-height: 380px;
+  object-fit: contain;
+  margin: 3rem auto 0;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
 /* ===== GALLERY ===== */
 .detail-gallery {
   display: grid;
@@ -923,6 +965,37 @@
   overflow: hidden;
   position: relative;
   z-index: 0;
+}
+
+.detail-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.detail-gallery-grid .gallery-img {
+  height: 200px;
+}
+
+.detail-gallery-grid .gallery-img:first-child {
+  grid-row: unset;
+}
+
+.detail-sketch-img {
+  max-width: 560px;
+  width: 100%;
+  margin: 1rem auto 0;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  cursor: zoom-in;
+}
+
+@media (max-width: 640px) {
+  .detail-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .gallery-img {
@@ -994,18 +1067,19 @@
 
 .pdf-viewer {
   width: 100%;
-  height: 90vh;
   border-top: 1px solid var(--border);
 }
 
 .has-pdf .pdf-viewer {
-  height: 60vh;
   max-width: 860px;
   margin: 0 auto;
-  overflow-y: auto;
   overflow-x: hidden;
-  overscroll-behavior: contain;
   padding: 0 2rem;
+}
+
+.has-pdf .pdf-viewer.pdf-narrow {
+  max-width: 560px;
+  padding: 0 1rem;
 }
 
 .pdf-viewer iframe {
@@ -1033,7 +1107,6 @@
 /* ===== PDF RESPONSIVE ===== */
 @media (max-width: 640px) {
   .has-pdf .pdf-viewer {
-    height: 65vh;
     padding: 0 1rem;
   }
 

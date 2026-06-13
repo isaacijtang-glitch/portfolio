@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
 const roles = [
-  'Architectural Engineer',
-  'Structural Analyst',
-  'BIM Developer',
-  'Software Builder',
+  'Architectural Engineering Student',
+  'Junior Mechanical Designer',
+  'Designer & Builder',
+  'Always Exploring',
 ];
 
 export function Hero({
