@@ -116,6 +116,10 @@
   border-bottom-color: var(--border);
 }
 
+[data-theme="light"] .navbar.scrolled {
+  background: rgba(245, 240, 232, 0.88);
+}
+
 .navbar-inner {
   max-width: 1140px;
   margin: 0 auto;
@@ -126,15 +130,19 @@
 }
 
 .navbar-logo {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--text);
-  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
 }
 
-.logo-bracket {
-  color: var(--accent);
+.navbar-logo-img {
+  height: 36px;
+  width: 36px;
+  object-fit: contain;
+  transition: opacity 0.2s;
+}
+
+.navbar-logo-img:hover {
+  opacity: 0.8;
 }
 
 .navbar-links {
@@ -168,6 +176,21 @@
 
 .navbar-links a:not(.btn-outline):hover::after {
   width: 100%;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  padding: 6px;
+  border-radius: var(--radius);
+  transition: color 0.2s, background 0.2s;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  background: var(--accent-dim);
 }
 
 .hamburger {
@@ -205,6 +228,10 @@
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
     padding: 0.75rem 0;
+  }
+
+  [data-theme="light"] .navbar-links {
+    background: rgba(245, 240, 232, 0.97);
   }
 
   .navbar-links.open { display: flex; }

@@ -63,9 +63,35 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+[data-theme="light"] {
+  --bg: #f5f0e8;
+  --surface: #ede8dc;
+  --surface-2: #e4ddd1;
+  --border: #d0c9bc;
+  --accent: #b8760f;
+  --accent-light: #c9870e;
+  --accent-dim: rgba(184, 118, 15, 0.1);
+  --accent-border: rgba(184, 118, 15, 0.3);
+  --text: #1c1a16;
+  --text-muted: #6b6258;
+  --text-dim: #9b9488;
+}
+
+/* smooth theme transitions */
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition:
+    background-color 0.45s ease,
+    color 0.35s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease !important;
+}
+
 body {
   margin: 0;
   overflow-x: hidden;
+  background: var(--bg);
 }
 
 a {
